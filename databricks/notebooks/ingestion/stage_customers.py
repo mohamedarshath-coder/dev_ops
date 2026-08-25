@@ -17,5 +17,5 @@ customers = spark.createDataFrame(
     ["customer_id", "customer_name"],
 )
 
-customers.createOrReplaceTempView("stg_customers")
+customers.write.mode("overwrite").saveAsTable("stg_customers")
 print(f"Staged {customers.count()} customers into stg_customers")

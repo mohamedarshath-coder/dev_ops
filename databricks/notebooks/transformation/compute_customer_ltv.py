@@ -14,11 +14,11 @@ spark = SparkSession.builder.appName("CustomerLTV").getOrCreate()
 
 orders = spark.createDataFrame(
     [
-        (1, "confirmed", 100.0),
-        (1, "shipped", 50.0),
-        (2, "confirmed", 200.0),
+        (1, 101, "confirmed", 100.0),
+        (1, 102, "shipped", 50.0),
+        (2, 103, "confirmed", 200.0),
     ],
-    ["customer_id", "status", "net_amount"],
+    ["customer_id", "order_id", "status", "net_amount"],
 )
 
 # COMMAND ----------

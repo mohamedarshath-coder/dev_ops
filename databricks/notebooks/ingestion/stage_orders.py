@@ -18,5 +18,5 @@ orders = spark.createDataFrame(
     ["customer_id", "order_id", "status", "net_amount"],
 )
 
-orders.createOrReplaceTempView("stg_orders")
+orders.write.mode("overwrite").saveAsTable("stg_orders")
 print(f"Staged {orders.count()} orders into stg_orders")

@@ -21,4 +21,7 @@ print(f"Joined {joined.count()} rows")
 # COMMAND ----------
 
 vip_customer = joined.filter(F.col("customer_id") == 999).first()
-print(f"VIP customer: {vip_customer.customer_name}, order {vip_customer.order_id}")
+if vip_customer is not None:
+    print(f"VIP customer: {vip_customer.customer_name}, order {vip_customer.order_id}")
+else:
+    print("No VIP customer found with id 999")

@@ -7,6 +7,7 @@
 # COMMAND ----------
 
 from pyspark.sql import SparkSession
+from pyspark.sql import functions as F
 
 spark = SparkSession.builder.appName("JoinCustomerOrders").getOrCreate()
 
@@ -16,3 +17,8 @@ customers = spark.table("stg_customers")
 joined = orders.join(customers, on="customer_id", how="inner")
 joined.show()
 print(f"Joined {joined.count()} rows")
+
+# COMMAND ----------
+
+vip_customer = joined.filter(F.col("customer_id") == 999).first()
+print(f"VIP customer: {vip_customer.customer_name}, order {vip_customer.order_id}")
